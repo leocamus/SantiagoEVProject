@@ -45,7 +45,7 @@ public class RunMatsimFromScratch{
 		config.qsim().setTrafficDynamics( TrafficDynamics.kinematicWaves );
 		config.qsim().setSnapshotStyle( SnapshotStyle.kinematicWaves );
 
-		config.plans().setHandlingOfPlansWithoutRoutingMode(HandlingOfPlansWithoutRoutingMode.useMainModeIdentifier);
+//		config.plans().setHandlingOfPlansWithoutRoutingMode(HandlingOfPlansWithoutRoutingMode.useMainModeIdentifier);
 		
 		// ---
 		
