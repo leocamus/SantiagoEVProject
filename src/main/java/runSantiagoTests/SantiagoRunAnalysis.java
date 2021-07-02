@@ -6,20 +6,16 @@ import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.population.Person;
 
 public class SantiagoRunAnalysis {
-	//Fields related to the scenario and its steps - they must be changed depending on the step
-	private static final String CASE_NAME = "policyRuns/10pct";
-	private static final String STEP_NAME = "StepOuter0";
-	private static final int IT_TO_EVALUATE = 200; //From the local counter
-	private static final int REFERENCE_IT = 600; //Reference iteration (same as first iteration of the step)
-//	private static final int LAST_IT = 600;
+	private static final String BASE_FOLDER_PATH = "/home/leocamus/Escritorio/MATSim_FromScratch/eventsExample/baseCase1pct";
+	private static final int IT_TO_EVALUATE = 100; //From the local counter
+
 	
 	
 	public static void main (String[]args){
-		SantiagoStuckAgentsAnalysis stuckAnalysis = new SantiagoStuckAgentsAnalysis(CASE_NAME,STEP_NAME);
+		SantiagoStuckAgentsAnalysis stuckAnalysis = new SantiagoStuckAgentsAnalysis(BASE_FOLDER_PATH);
 		
 
 		int it = IT_TO_EVALUATE;
-		int itAux = IT_TO_EVALUATE+REFERENCE_IT;
 		
 //		while(itAux<=LAST_IT){
 			
@@ -34,8 +30,8 @@ public class SantiagoRunAnalysis {
 //			SantiagoCarLegsAnalysis carLegAnalysis = new SantiagoCarLegsAnalysis(CASE_NAME, STEP_NAME);
 //			carLegAnalysis.writeCarLegs(it, itAux);
 			
-			SantiagoTravelDistancesAnalysis distancesAnalysis = new SantiagoTravelDistancesAnalysis(CASE_NAME, STEP_NAME, stuckAgents);
-			distancesAnalysis.writeFileForTravelDistancesByMode(it,itAux);
+			SantiagoTravelDistancesAnalysis distancesAnalysis = new SantiagoTravelDistancesAnalysis(BASE_FOLDER_PATH, stuckAgents);
+			distancesAnalysis.writeFileForTravelDistancesByMode(it);
 			
 //			it+=50;
 //			itAux+=50;	

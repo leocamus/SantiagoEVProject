@@ -25,14 +25,10 @@ import org.matsim.core.utils.io.IOUtils;
 public class SantiagoTravelDistancesAnalysis {
 	
 	private String runDir;	
-	private String outputDir;
-	private String analysisDir;
 	private List<Id<Person>> stuckAgents;
 
-	public SantiagoTravelDistancesAnalysis(String caseName, String stepName, List<Id<Person>> stuckAgents) {		
-		this.runDir = "../../../runs-svn/santiago/" + caseName + "/";
-		this.outputDir = runDir + "outputOf" + stepName + "/";
-		this.analysisDir = outputDir + "analysis/";	
+	public SantiagoTravelDistancesAnalysis(String baseFolderPath, List<Id<Person>> stuckAgents) {		
+		this.runDir = baseFolderPath;
 		this.stuckAgents=stuckAgents;
 	}
 
@@ -40,16 +36,17 @@ public class SantiagoTravelDistancesAnalysis {
 		file.mkdirs();	
 	}
 
-	public void writeFileForTravelDistancesByMode(int it, int itAux){
+	public void writeFileForTravelDistancesByMode(int it){
 
-		File analysisDir = new File(this.analysisDir);
+		String analysisDirPath = this.runDir + "/analysis";
+		File analysisDir = new File(analysisDirPath);
 		if(!analysisDir.exists()) createDir(analysisDir);
 
-		String configFile = outputDir + "output_config.xml.gz";
-		String netFile = outputDir + "output_network.xml.gz";
-		String popFile = outputDir + "ITERS/it." + String.valueOf(it) + "/" + String.valueOf(it) + ".plans.xml.gz";
-		String eventsFile = outputDir + "ITERS/it." + String.valueOf(it) + "/" + String.valueOf(it) + ".events.xml.gz";
-		String outputFile = this.analysisDir + String.valueOf(itAux) + ".modeTravelDistances.txt";
+		String configFile = runDir + "/output_config.xml";
+		String netFile = runDir + "/output_network.xml.gz";
+		String popFile = runDir + "/" + String.valueOf(it) + ".plans.xml.gz";
+		String eventsFile = runDir + "/" + String.valueOf(it) + ".events.xml.gz";
+		String outputFile = analysisDirPath + "/" + String.valueOf(it) + ".modeTravelDistances.txt";
 
 		Config config = ConfigUtils.loadConfig(configFile);
 		Network network = NetworkUtils.createNetwork();

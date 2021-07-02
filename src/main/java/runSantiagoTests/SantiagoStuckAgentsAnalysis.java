@@ -15,15 +15,11 @@ import org.matsim.core.utils.io.IOUtils;
 
 public class SantiagoStuckAgentsAnalysis {
 	
-	private String runDir;	
-	private String outputDir;
-	private String analysisDir;
+	private String runDir;
 	
-	public SantiagoStuckAgentsAnalysis(String caseName, String stepName){
+	public SantiagoStuckAgentsAnalysis(String baseFolderPath){
 
-		this.runDir = "../../../runs-svn/santiago/" + caseName + "/";
-		this.outputDir = runDir + "outputOf" + stepName + "/";
-		this.analysisDir = outputDir + "analysis/";	
+		this.runDir = baseFolderPath; //This is the base folder where your events files
 
 	}
 	
@@ -31,11 +27,12 @@ public class SantiagoStuckAgentsAnalysis {
 		file.mkdirs();	
 	}
 	
-	public void writeStuckEvents(int it, int itAux){
-		File analysisDir = new File(this.analysisDir);
+	public void writeStuckEvents(int it){
+		String analysisDirPath = this.runDir + "/analysis";
+		File analysisDir = new File(analysisDirPath);
 		if(!analysisDir.exists()) createDir(analysisDir);
 
-		String eventsFile = outputDir + "ITERS/it." + String.valueOf(it) + "/" + String.valueOf(it) + ".events.xml.gz";
+		String eventsFile = this.runDir + "/" + String.valueOf(it) + ".events.xml.gz";
 
 		SantiagoStuckAndAbortEventHandler handler = new SantiagoStuckAndAbortEventHandler();
 		EventsManager events = EventsUtils.createEventsManager();
@@ -45,7 +42,7 @@ public class SantiagoStuckAgentsAnalysis {
 
 		SortedMap<String, Map<Id<Person>, List<Double>>> mode2PersonId2Times = handler.getMode2IdAgentsStuck2Time();
 
-		String outputFile = this.analysisDir + String.valueOf(itAux) + ".modeStuckAgents.txt";
+		String outputFile = analysisDirPath + String.valueOf(it) + ".modeStuckAgents.txt";
 		try (BufferedWriter writer = IOUtils.getBufferedWriter(outputFile)) {
 			writer.write("mode\tpersonId\teventTime\n");
 			for(String mode : mode2PersonId2Times.keySet()){				
@@ -63,7 +60,7 @@ public class SantiagoStuckAgentsAnalysis {
 	}
 
 	public List<Id<Person>> getStuckAgents (int it){
-		String eventsFile = outputDir + "ITERS/it." + String.valueOf(it) + "/" + String.valueOf(it) + ".events.xml.gz";
+		String eventsFile = this.runDir + "/" + String.valueOf(it) + ".events.xml.gz";
 		SantiagoStuckAndAbortEventHandler handler = new SantiagoStuckAndAbortEventHandler();
 		EventsManager events = EventsUtils.createEventsManager();
 		events.addHandler(handler);

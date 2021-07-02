@@ -63,7 +63,7 @@ public class SantiagoPTDistanceFromPlans {
 							departureTimeTransitTrip="noInfo";
 						} else {
 
-							departureTimeTransitTrip=String.valueOf(lastDepartureTime);
+							departureTimeTransitTrip=String.valueOf(lastDepartureTime.seconds());
 							//System.out.println(lastDepartureTime);
 						}
 					}
@@ -76,7 +76,7 @@ public class SantiagoPTDistanceFromPlans {
 								departureTimeTransitTrip="noInfo";
 							} else {
 								
-								departureTimeTransitTrip=String.valueOf(lastDepartureTime);
+								departureTimeTransitTrip=String.valueOf(lastDepartureTime.seconds());
 
 							}
 							String actualMode="";
