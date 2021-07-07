@@ -1,4 +1,4 @@
-package ScenarioTranslation;
+package scenarioTranslation;
 
 /* *********************************************************************** *
  * project: org.matsim.*

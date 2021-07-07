@@ -1,4 +1,4 @@
-package ScenarioTranslation;
+package scenarioTranslation;
 
 import java.io.File;
 import java.util.HashSet;
@@ -37,7 +37,7 @@ import org.matsim.core.config.groups.VspExperimentalConfigGroup.VspDefaultsCheck
 import org.matsim.pt.config.TransitConfigGroup;
 import org.matsim.pt.config.TransitRouterConfigGroup;
 
-import ScenarioTranslation.SantiagoScenarioConstants.SubpopulationName;
+import scenarioTranslation.SantiagoScenarioConstants.SubpopulationName;
 
 public class TranslatingInputs {
 /*	

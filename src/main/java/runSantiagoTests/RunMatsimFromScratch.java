@@ -56,14 +56,12 @@ import org.matsim.core.replanning.selectors.RandomPlanSelector;
 import org.matsim.core.replanning.strategies.DefaultPlanStrategiesModule;
 import org.matsim.core.router.TripRouter;
 import org.matsim.core.scenario.ScenarioUtils;
+
+import scenarioTranslation.SantiagoScenarioConstants;
+
 import org.matsim.core.network.NetworkUtils;
 
 import org.jfree.util.Log;
-
-
-
-
-import ScenarioTranslation.SantiagoScenarioConstants;
 
 public class RunMatsimFromScratch{
 
