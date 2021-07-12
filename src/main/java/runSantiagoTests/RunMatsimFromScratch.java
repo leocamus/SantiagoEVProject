@@ -45,6 +45,8 @@ import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.MatsimServices;
 import org.matsim.core.controler.OutputDirectoryHierarchy.OverwriteFileSetting;
+import org.matsim.core.controler.PrepareForSim;
+import org.matsim.core.controler.PrepareForSimImpl;
 import org.matsim.core.network.algorithms.TransportModeNetworkFilter;
 import org.matsim.core.population.algorithms.PermissibleModesCalculator;
 import org.matsim.core.population.algorithms.PermissibleModesCalculatorImpl;
@@ -65,7 +67,7 @@ import org.jfree.util.Log;
 
 public class RunMatsimFromScratch{
 
-	static String configFile = "../../Desktop/Devs/MATSim_EV_Scenarios/v2a/Santiago/config_baseCase1pct_test.xml";
+	static String configFile = "../../Desktop/Devs/MATSim_EV_Scenarios/v2a/Santiago/config_baseCase1pct_problematic.xml";
 	static boolean doModeChoice = true;
 	static boolean mapActs2Links=false;
 	static int sigma = 3;
@@ -108,6 +110,16 @@ public class RunMatsimFromScratch{
 		
 		//Adding randomness to the router, sigma = 3
 		config.plansCalcRoute().setRoutingRandomness(sigma);
+		
+		controler.addOverridingModule(new AbstractModule() {
+			@Override
+			public void install() {
+				this.bind(PrepareForSimImpl.class);
+				this.bind(PrepareForSim.class).to(SantiagoPrepareForSim.class);	
+			}
+		});
+		
+
 
 		
 		controler.run();
@@ -163,10 +175,13 @@ public class RunMatsimFromScratch{
 			public void install() {
 				addTravelTimeBinding(TransportMode.ride).to(networkTravelTime());
 				addTravelDisutilityFactoryBinding(TransportMode.ride).to(carTravelDisutilityFactoryKey());
+				
 				addTravelTimeBinding(SantiagoScenarioConstants.Modes.taxi.toString()).to(networkTravelTime());
 				addTravelDisutilityFactoryBinding(SantiagoScenarioConstants.Modes.taxi.toString()).to(carTravelDisutilityFactoryKey());
+				
 				addTravelTimeBinding(SantiagoScenarioConstants.Modes.colectivo.toString()).to(networkTravelTime());
 				addTravelDisutilityFactoryBinding(SantiagoScenarioConstants.Modes.colectivo.toString()).to(carTravelDisutilityFactoryKey());
+				
 				addTravelTimeBinding(SantiagoScenarioConstants.Modes.other.toString()).to(networkTravelTime());
 				addTravelDisutilityFactoryBinding(SantiagoScenarioConstants.Modes.other.toString()).to(carTravelDisutilityFactoryKey());
 			}
