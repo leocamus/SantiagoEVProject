@@ -12,6 +12,7 @@ import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.config.ConfigWriter;
 import org.matsim.core.config.groups.ControlerConfigGroup;
 import org.matsim.core.config.groups.CountsConfigGroup;
+import org.matsim.core.config.groups.GlobalConfigGroup;
 import org.matsim.core.config.groups.NetworkConfigGroup;
 import org.matsim.core.config.groups.PlansConfigGroup;
 import org.matsim.core.config.groups.QSimConfigGroup;
@@ -44,7 +45,7 @@ public class SamplingRandomAgents {
 
 		Population newPop = ScenarioUtils.createScenario(ConfigUtils.createConfig()).getPopulation() ;
 
-		List<Id<Person>> problematicAgents = new ArrayList<>();
+		List<Id<Person>> problematicAgents = new ArrayList<Id<Person>>();
 		Id<Person> id1 = Id.create("16517105_30", Person.class);
 		Id<Person> id2 = Id.create("16517105_37", Person.class);
 		Id<Person> id3 = Id.create("16517105_4", Person.class);
@@ -82,12 +83,16 @@ public class SamplingRandomAgents {
 	
 	private void changeAndWriteNewFiles(String originalConfig, String sampledConfig, String inputDir, String outputDir) {
 		double finalSampleRate = Math.floor( ORIGINAL_PERCENTAGE * SAMPLED_PERCENTAGE * 1000) / 1000 ; //BE AWARE OF THIS
-		Config config = ConfigUtils.loadConfig( originalConfig );		
-
+		Config config = ConfigUtils.loadConfig( originalConfig );
+		
+		GlobalConfigGroup global = config.global();
+		global.setNumberOfThreads(1);
+		
 		QSimConfigGroup qsim = config.qsim();
 		qsim.setFlowCapFactor(finalSampleRate);
 		double storageCapFactor = Math.ceil( ( ( finalSampleRate / ( Math.pow ( finalSampleRate , 0.25 ) ) ) ) * 1000 ) / 1000;
 		qsim.setStorageCapFactor(storageCapFactor);
+		qsim.setNumberOfThreads(1);
 
 	
 
