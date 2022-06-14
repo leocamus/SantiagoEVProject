@@ -1,0 +1,13 @@
+2021-07-29T17:44:41,064  WARN VspConfigConsistencyCheckerImpl:84 you are insisting on config v1.  vsp default is using v2.
+2021-07-29T17:44:41,064  WARN VspConfigConsistencyCheckerImpl:100 you are not using FastAStarLandmarks as routing algorithm.  vsp default is to use FastAStarLandmarks.
+2021-07-29T17:44:41,064  WARN VspConfigConsistencyCheckerImpl:158 found `typicalDurationScoreComputation == uniform' for activity type car interaction; vsp should use `relative'. 
+2021-07-29T17:44:41,064  WARN VspConfigConsistencyCheckerImpl:158 found `typicalDurationScoreComputation == uniform' for activity type bike interaction; vsp should use `relative'. 
+2021-07-29T17:44:41,064  WARN VspConfigConsistencyCheckerImpl:158 found `typicalDurationScoreComputation == uniform' for activity type other interaction; vsp should use `relative'. 
+2021-07-29T17:44:41,064  WARN VspConfigConsistencyCheckerImpl:158 found `typicalDurationScoreComputation == uniform' for activity type walk interaction; vsp should use `relative'. 
+2021-07-29T17:44:41,064 ERROR VspConfigConsistencyCheckerImpl:172 found monetary distance rate for mode car < -0.01.  -0.01 per meter means -10 per km.  You probably want to divide your value by 1000.
+2021-07-29T17:44:41,065 ERROR VspConfigConsistencyCheckerImpl:172 found monetary distance rate for mode taxi < -0.01.  -0.01 per meter means -10 per km.  You probably want to divide your value by 1000.
+2021-07-29T17:44:41,065  WARN VspConfigConsistencyCheckerImpl:247 found `PlansCalcRouteConfigGroup.AccessEgressType.none'; vsp should use `accessEgressModeToLink' or some other value or talk to Kai.
+2021-07-29T17:44:41,065  WARN VspConfigConsistencyCheckerImpl:254 found qsim.usePersonIdForMissingVehicleId==true; this is only for backwards compatibility and should rather be set to false
+2021-07-29T17:44:41,065  WARN VspConfigConsistencyCheckerImpl:259 found `qsim.usingTravelTimeCheckInTeleporation==false'; vsp should try out `true' and report.
+2021-07-29T17:44:41,065  WARN VspConfigConsistencyCheckerImpl:343 travelTimeCalculator is not analyzing different modes separately; vsp default is to do that.  Otherwise, you are using the same travel times for, say, bike and car.
+2021-07-29T17:44:41,203  WARN SantiagoPrepareForSim:202 'usePersonIdForMissingVehicleId' is deprecated. It will be removed soon.

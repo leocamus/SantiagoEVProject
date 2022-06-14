@@ -67,7 +67,8 @@ import org.jfree.util.Log;
 
 public class RunMatsimFromScratch{
 
-	static String configFile = "../../Desktop/Devs/MATSim_EV_Scenarios/v2a/Santiago/config_baseCase1pct_problematic.xml";
+//	static String configFile = "../../Desktop/Devs/MATSim_EV_Scenarios/v2a/Santiago/config_baseCase1pct_problematic.xml";
+	static String configFile = "/Users/leocamus/Desktop/Devs/MATSim_EV_Scenarios/v2a/santiago/config_baseCase1pct_problematic_onlyOTHER.xml";
 	static boolean doModeChoice = true;
 	static boolean mapActs2Links=false;
 	static int sigma = 3;

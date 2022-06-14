@@ -51,14 +51,14 @@ public class SamplingRandomAgents {
 		Id<Person> id3 = Id.create("16517105_4", Person.class);
 		Id<Person> id4 = Id.create("16517105_40", Person.class);
 		Id<Person> id5 = Id.create("16517105_9", Person.class);
-		Id<Person> id6 = Id.create("10086202_10", Person.class);
+//		Id<Person> id6 = Id.create("10086202_10", Person.class);
 
 		problematicAgents.add(id1);
 		problematicAgents.add(id2);
 		problematicAgents.add(id3);
 		problematicAgents.add(id4);
 		problematicAgents.add(id5);
-		problematicAgents.add(id6);
+//		problematicAgents.add(id6);
 
 
 		
